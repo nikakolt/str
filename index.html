@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+
+</style>
+
+    <section class="menubar">
+<a href="./index.html"><img src="" alt="logo"></a>
+<div class="list-container">
+
+<ul class="li-list">
+<li> <a href="./onas.html">о нас</a></li>
+<li> <a href="./masterclass.html">мастерклассы</a></li>
+<li> <a href="./works.html">работы</a></li>
+<li> <a href="./zapis.html">запись</a></li>
+</ul>
+</div>
+</section>
+    <script>
+  const links = document.querySelectorAll('.li-list a');
+  links.forEach(link => {
+    if (link.href === window.location.href) {
+      link.classList.add('active');
+    }
+  });
+</script>
+</body>
+</html>
