@@ -5,28 +5,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
+    <style>
+        body {
+            min-height: 150vh;
+            overflow-x: hidden;
+        }
+        .fzap {
+            position: absolute;
+            width: 70vw;
+            margin-top: 8%;
+            margin-left: 15%;
+        }
+        .tzap {
+            position: absolute;
+            width: 70.04vw;
+            font-family: "kommuna normal";
+            font-size: 3vw;
+            margin-left: 15%;
+            margin-top: 42%;
+        }
+        .form-container {
+            width: 700px;
+            margin: 0 auto;
+            padding-top: 950px;
+            overflow: visible;
+            height: auto;
+            margin-left: 15%;
+        }
+        .row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .input {
+            flex: 1;
+            height: 40px;
+            padding: 0 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #666;
+            box-sizing: border-box;
+        }
+        select.input, input[type="date"].input {
+            appearance: none;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22%3E%3Cpath fill=%22%23666%22 d=%22M6 8L1 3h10z%22/%3E%3C/svg%3E');
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 12px;
+        }
+        .button {
+            display: block;
+            width: 160px;
+            height: 45px;
+            background: #222;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background: #000;
+        }
+        .ticket-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .ticket-count {
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .plus-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-
     <section class="menubar">
-<a href="./index.html"><img src="" alt="logo"></a>
-<div class="list-container">
+        <a href="./index.html"><img class="logo" src="./img/log.png" alt="logo"></a>
+        <div class="list-container">
+            <ul class="li-list">
+                <li><a href="./onas.html">о нас</a></li>
+                <li><a href="./masterclass.html">мастерклассы</a></li>
+                <li><a href="./works.html">работы</a></li>
+                <li><a href="./zapis.html">запись</a></li>
+            </ul>
+        </div>
+    </section>
 
-<ul class="li-list">
-<li> <a href="./onas.html">о нас</a></li>
-<li> <a href="./masterclass.html">мастерклассы</a></li>
-<li> <a href="./works.html">работы</a></li>
-<li> <a href="./zapis.html">запись</a></li>
-</ul>
-</div>
-</section>
     <script>
-  const links = document.querySelectorAll('.li-list a');
-  links.forEach(link => {
-    if (link.href === window.location.href) {
-      link.classList.add('active');
-    }
-  });
-</script>
+        const links = document.querySelectorAll('.li-list a');
+        links.forEach(link => {
+            if (link.href === window.location.href) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+
+    <img class="fzap" src="./img/fzap.jpg" alt="fzap">
+    <p class="tzap">Мы не зацикливаемся на уже готовых и принятых в дизайнерском сообществе решениях, а даем больше «инструментов» для реализации ваших идей</p>
+
+    <div class="form-container">
+        <div class="row">
+            <select class="input">
+                <option>выбрать мастеркласс</option>
+                <option>диатипия</option>
+                <option>линографюра</option>
+                <option>шелкография</option>
+            </select>
+            <input type="date" class="input">
+            <div class="input">
+                <div class="ticket-wrapper">
+                    <span>количество билетов</span>
+                    <div>
+                        <span id="ticket-count" class="ticket-count">1</span>
+                        <button class="plus-btn" onclick="incrementTickets()">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <input type="text" class="input" placeholder="номер телефона">
+            <input type="text" class="input" placeholder="ваше имя">
+        </div>
+        <button class="button" onclick="window.location.href='404.html'">записаться</button>
+    </div>
+
+    <script>
+        let ticketCount = 1;
+        function incrementTickets() {
+            ticketCount++;
+            document.getElementById('ticket-count').innerText = ticketCount;
+        }
+    </script>
+
+
+<div class="podval">
+<h1 class="sh1">Штрих</h1>
+<img class="geo" src="./img/geo.svg" alt="geo">
+<img class="pocht" src="./img/pocht.svg" alt="pocht">
+<img class="tel" src="./img/tel.svg" alt="tel">
+<p class="pp1">ул. Пионерская 9</p>
+<p class="pp2">nazvanie.gmail.ru</p>
+<p class="pp3">8-999-999-99-99</p>
+<img class="cvet" src="./img/cvet.svg" alt="cvet">
+
+<a href="./onas.html" class="nav-button1" id="but1" >о нас</a>
+<a href="./masterclass.html" class="nav-button2">мастерклассы</a>
+<a href="./works.html" class="nav-button3">работы</a>
+<a href="./zapis.html" class="nav-button4">запись</a>
+
+</div>
+
+<style>
+  .podval{
+    margin-top: 10%;
+  }
+</style>
+
 </body>
 </html>

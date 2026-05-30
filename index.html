@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
 
@@ -12,7 +13,7 @@
 </style>
 
     <section class="menubar">
-<a href="./index.html"><img src="" alt="logo"></a>
+<a href="./index.html"><img class="logo" src="./img/log.png" alt="logo"></a>
 <div class="list-container">
 
 <ul class="li-list">
@@ -31,5 +32,196 @@
     }
   });
 </script>
+
+<h1 class="h1">Штрих</h1>
+<p class="p1">мастерская ручной 
+  печати для дизайнеров </p>
+  <!-- <div>
+    <img class="pic1" src="./img/pic1.png" alt="pic1">
+    <img class="pic2" src="./img/pic2.png" alt="pic2">
+    <img class="pic3" src="./img/pic3.png" alt="pic3">
+    <img class="pic4" src="./img/pic4.png" alt="pic4">
+  </div> -->
+
+  <div class="bel"></div>
+
+<div class="trail-container" id="trailContainer"></div>
+
+
+
+
+<script>
+    // ======================= НАСТРОЙКИ =======================
+    const IMAGES = [
+        "img/mo1.png",
+        "img/mo2.png",
+        "img/mo3.png",
+        "img/mo4.png",
+        "img/mo5.png",
+        "img/mo6.png",
+        "img/mo7.png",
+        "img/mo8.png",
+        "img/mo9.png",
+        "img/mo10.png"
+    ];
+
+     // НАСТРОЙКИ РАЗМЕРОВ - ИЗМЕНЕНИЯ ЗДЕСЬ!
+    const MAX_TRAIL_LENGTH = 28;
+    const IMAGE_SIZE_MIN = 120;    // был 28 -> теперь 70 (больше)
+    const IMAGE_SIZE_MAX = 200;    // был 52 -> теперь 120 (больше)
+    const SPAWN_DELAY_MS = 60;
+    const RANDOM_OFFSET_PX = 8;
+    
+    let trailEnabled = true;
+    let lastSpawnTime = 0;
+    let trailElements = [];
+    let container = document.getElementById('trailContainer');
+    
+    function getRandomImage() {
+        const randomIndex = Math.floor(Math.random() * IMAGES.length);
+        return IMAGES[randomIndex];
+    }
+    
+    function getRandomSize() {
+        return Math.floor(Math.random() * (IMAGE_SIZE_MAX - IMAGE_SIZE_MIN + 1) + IMAGE_SIZE_MIN);
+    }
+    
+    function createTrailElement(x, y) {
+        if (!trailEnabled) return null;
+        
+        const imgName = getRandomImage();
+        const size = getRandomSize();
+        
+        const trailDiv = document.createElement('div');
+        trailDiv.className = 'trail-image';
+        
+        const img = document.createElement('img');
+        img.src = imgName;
+        img.alt = '';
+        img.style.width = `${size}px`;
+        img.style.height = 'auto';
+        img.style.display = 'block';
+        img.style.pointerEvents = 'none';
+        // Убираем любую возможную рамку/подсветку
+        img.style.outline = 'none';
+        img.style.border = 'none';
+        
+        const randomRotate = (Math.random() - 0.5) * 30;
+        const offsetX = (Math.random() - 0.5) * RANDOM_OFFSET_PX;
+        const offsetY = (Math.random() - 0.5) * RANDOM_OFFSET_PX;
+        
+        trailDiv.appendChild(img);
+        trailDiv.style.left = `${x - size/2 + offsetX}px`;
+        trailDiv.style.top = `${y - size/2 + offsetY}px`;
+        trailDiv.style.width = `${size}px`;
+        trailDiv.style.height = `${size}px`;
+        trailDiv.style.transform = `rotate(${randomRotate}deg)`;
+        
+        container.appendChild(trailDiv);
+        trailElements.push(trailDiv);
+        
+        const onAnimationEnd = () => {
+            if (trailDiv && trailDiv.parentNode) {
+                trailDiv.removeEventListener('animationend', onAnimationEnd);
+                trailDiv.remove();
+            }
+            const index = trailElements.indexOf(trailDiv);
+            if (index !== -1) trailElements.splice(index, 1);
+        };
+        
+        trailDiv.addEventListener('animationend', onAnimationEnd);
+        
+        if (trailElements.length > MAX_TRAIL_LENGTH) {
+            const oldest = trailElements.shift();
+            if (oldest && oldest.parentNode) {
+                oldest.removeEventListener('animationend', () => {});
+                oldest.remove();
+            }
+        }
+        
+        return trailDiv;
+    }
+    
+    function onPointerMove(event) {
+        if (!trailEnabled) return;
+        
+        let clientX, clientY;
+        if (event.touches) {
+            if (event.touches.length === 0) return;
+            clientX = event.touches[0].clientX;
+            clientY = event.touches[0].clientY;
+        } else {
+            clientX = event.clientX;
+            clientY = event.clientY;
+        }
+        
+        const now = Date.now();
+        if (now - lastSpawnTime >= SPAWN_DELAY_MS) {
+            lastSpawnTime = now;
+            createTrailElement(clientX, clientY);
+        }
+    }
+    
+    function clearAllTrails() {
+        for (let elem of trailElements) {
+            if (elem && elem.parentNode) {
+                elem.removeEventListener('animationend', () => {});
+                elem.remove();
+            }
+        }
+        trailElements = [];
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+    }
+    
+    function toggleTrail() {
+        trailEnabled = !trailEnabled;
+        const toggleBtn = document.getElementById('toggleTrailBtn');
+        if (trailEnabled) {
+            toggleBtn.innerHTML = '✨ Вкл';
+            toggleBtn.style.background = 'rgba(0,200,200,0.5)';
+        } else {
+            toggleBtn.innerHTML = '❌ Выкл';
+            toggleBtn.style.background = 'rgba(100,100,100,0.5)';
+            clearAllTrails();
+        }
+    }
+    
+    function preloadImages() {
+        IMAGES.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+        console.log('✅ Изображения предзагружены');
+    }
+    
+    function init() {
+        preloadImages();
+        
+        window.addEventListener('mousemove', onPointerMove);
+        window.addEventListener('touchmove', onPointerMove, { passive: false });
+        window.addEventListener('touchstart', onPointerMove);
+        
+        const toggleBtn = document.getElementById('toggleTrailBtn');
+        const clearBtn = document.getElementById('clearTrailBtn');
+        
+        if (toggleBtn) toggleBtn.addEventListener('click', toggleTrail);
+        if (clearBtn) clearBtn.addEventListener('click', clearAllTrails);
+        
+        toggleBtn.innerHTML = '✨ Вкл';
+        toggleBtn.style.background = 'rgba(0,200,200,0.5)';
+        
+        console.log('🚀 Эффект мышиного следа активирован! Размеры: от ' + IMAGE_SIZE_MIN + 'px до ' + IMAGE_SIZE_MAX + 'px');
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+</script>
+
+
 </body>
 </html>

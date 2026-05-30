@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <section class="menubar">
+<a href="./index.html"><img class="logo" src="./img/log.png" alt="logo"></a>
+<div class="list-container">
+
+<ul class="li-list">
+<li> <a href="./onas.html">о нас</a></li>
+<li> <a href="./masterclass.html">мастерклассы</a></li>
+<li> <a href="./works.html">работы</a></li>
+<li> <a href="./zapis.html">запись</a></li>
+</ul>
+</div>
+</section>
+    <script>
+  const links = document.querySelectorAll('.li-list a');
+  links.forEach(link => {
+    if (link.href === window.location.href) {
+      link.classList.add('active');
+    }
+  });
+</script>
+
+
+
+<h1 class="shel">Шелкография</h1>
+<img class="shelkogr" src="./img/shelkogr.jpg" alt="diatip">
+<p class="she">это метод печати, который позволяет переносить изображения на различные поверхности.</p>
+
+<a href="./zapis.html" class="record-button">записаться</a>
+<style>
+.record-button {
+  display: inline-block;
+  position: absolute;
+  background-color: #d1d1d1;
+  color: #333;
+  padding: 14px 50px;
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-size: 2vw;
+  margin-left: 45%;
+  margin-top: 28%;
+}
+
+.record-button:hover {
+  background-color: #bfbfbf;
+  color: #000;
+  transform: scale(1.05);
+}
+</style>
+
+<style>
+.shel{
+position: absolute;
+width: 16.04vw;
+font-family: "kommuna normal";
+font-size: 3.35vw;
+margin-left: 42%;
+margin-top: 5%;
+}
+
+.shelkogr{
+position: absolute;
+width: 29.5833vw;
+margin-top: 12%;
+margin-left: 10%;
+}
+
+.she{
+position: absolute;
+width: 52.08vw;
+font-family: "kommuna normal";
+font-size: 2.35vw;
+margin-top: 15%;
+margin-left: 45%;
+letter-spacing: -1.1%;
+line-height: 150%;
+}
+
+</style>
+
+<div class="podval">
+<h1 class="sh1">Штрих</h1>
+<img class="geo" src="./img/geo.svg" alt="geo">
+<img class="pocht" src="./img/pocht.svg" alt="pocht">
+<img class="tel" src="./img/tel.svg" alt="tel">
+<p class="pp1">ул. Пионерская 9</p>
+<p class="pp2">nazvanie.gmail.ru</p>
+<p class="pp3">8-999-999-99-99</p>
+<img class="cvet" src="./img/cvet.svg" alt="cvet">
+
+<a href="./onas.html" class="nav-button1" id="but1" >о нас</a>
+<a href="./masterclass.html" class="nav-button2">мастерклассы</a>
+<a href="./works.html" class="nav-button3">работы</a>
+<a href="./zapis.html" class="nav-button4">запись</a>
+
+</div>
+
+<style>
+  .podval{
+    margin-top: 35%;
+  }
+</style>
+
+
+</body>
+</html>

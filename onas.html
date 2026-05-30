@@ -9,7 +9,7 @@
 <body>
 
     <section class="menubar">
-<a href="./index.html"><img src="" alt="logo"></a>
+<a href="./index.html"><img class="logo" src="./img/log.png" alt="logo"></a>
 <div class="list-container">
 
 <ul class="li-list">
@@ -28,5 +28,76 @@
     }
   });
 </script>
+
+<p class="onas1">мастерская – место, где собираются творческие люди и дизайнеры для того, чтобы реализовывать свои идеи и делиться ими </p>
+
+<div>
+<img class="cvet1" src="./img/cvet1.svg" alt="cvet1">
+<img class="cvet2" src="./img/cvet1.svg" alt="cvet2">
+<img class="cvet3" src="./img/cvet1.svg" alt="cvet3">
+<img class="cvet4" src="./img/cvet1.svg" alt="cvet4">
+</div>
+
+<div>
+  <h1 class="mis">Миссия</h1>
+  <p class="mis1">не зацикливаться на уже готовых и принятых в дизайнерском сообществе решениях, давать дизайнерам больше «инструментов» для реализации их идей </p>
+  <img class="onask1" src="./img/onask1.svg" alt="1">
+</div>
+
+<div>
+  <h1 class="cen">Ценности</h1>
+  <p class="cen1">добрый, свободный, творческий </p>
+  <img class="onask2" src="./img/onask2.svg" alt="2">
+</div>
+
+<div>
+  <h1 class="har">Характер</h1>
+  <p class="har1">свобода мышления, вариативность, комьюнити</p>
+  <img class="onask3" src="./img/onask3.svg" alt="3">
+</div>
+
+<div class="podval">
+<h1 class="sh1">Штрих</h1>
+<img class="geo" src="./img/geo.svg" alt="geo">
+<img class="pocht" src="./img/pocht.svg" alt="pocht">
+<img class="tel" src="./img/tel.svg" alt="tel">
+<p class="pp1">ул. Пионерская 9</p>
+<p class="pp2">nazvanie.gmail.ru</p>
+<p class="pp3">8-999-999-99-99</p>
+<img class="cvet" src="./img/cvet.svg" alt="cvet">
+
+<a href="./onas.html" class="nav-button1" id="but1" >о нас</a>
+<a href="./masterclass.html" class="nav-button2">мастерклассы</a>
+<a href="./works.html" class="nav-button3">работы</a>
+<a href="./zapis.html" class="nav-button4">запись</a>
+
+</div>
+
+<script>
+  const flowers = document.querySelectorAll('.cvet1, .cvet2, .cvet3, .cvet4');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const rotation = scrollY * 0.3; // регулируйте коэффициент для скорости
+
+});
+</script>
+
+ <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const flowers = document.querySelectorAll('.cvet1, .cvet2, .cvet3, .cvet4');
+  
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const rotation = scrollY * 0.3;
+    
+    flowers.forEach((flower, index) => {
+      const direction = index % 2 === 0 ? 1 : -1;
+      flower.style.transform = `rotate(${rotation * direction}deg)`;
+    });
+  });
+});
+</script>
+
+
 </body>
 </html>

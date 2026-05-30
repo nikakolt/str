@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+
+
+</style>
+
+    <section class="menubar">
+<a href="./index.html"><img class="logo" src="./img/log.png" alt="logo"></a>
+<div class="list-container">
+
+<ul class="li-list">
+<li> <a href="./onas.html">о нас</a></li>
+<li> <a href="./masterclass.html">мастерклассы</a></li>
+<li> <a href="./works.html">работы</a></li>
+<li> <a href="./zapis.html">запись</a></li>
+</ul>
+</div>
+</section>
+    <script>
+  const links = document.querySelectorAll('.li-list a');
+  links.forEach(link => {
+    if (link.href === window.location.href) {
+      link.classList.add('active');
+    }
+  });
+</script>
+
+
+
+
+<h1 class="ch">404</h1>
+
+<p class="chch">страница не найдена </p>
+
+
+<style>
+.ch{
+position: absolute;
+width: 16.04vw;
+font-family: "kommuna normal";
+font-size: 5.35vw;
+margin-left: 45%;
+margin-top: 15%;
+    
+}
+
+.chch{
+position: absolute;
+width: 50.04vw;
+font-family: "kommuna normal";
+font-size: 3.35vw;
+margin-left: 32%;
+margin-top: 22%; 
+}
+
+</style>
+
+
+<button class="button" onclick="window.location.href='zapis.html'">вернуться</button>
+
+<style>
+.button {
+  display: block;
+  width: 160px;
+  height: 45px;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 28%;
+  margin-left: 44.5%;
+}
+.button:hover {
+  background: #000;
+}
+</style>
+
+
+</body>
+</html>
