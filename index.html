@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/adaptive.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
@@ -14,6 +15,14 @@
 
     <section class="menubar">
 <a href="./index.html"><img class="logo" src="./img/log.png" alt="logo"></a>
+
+  <button class="burger" id="burgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+
 <div class="list-container">
 
 <ul class="li-list">
@@ -51,7 +60,7 @@
 
 
 <script>
-    // ======================= НАСТРОЙКИ =======================
+
     const IMAGES = [
         "img/mo1.png",
         "img/mo2.png",
@@ -65,10 +74,10 @@
         "img/mo10.png"
     ];
 
-     // НАСТРОЙКИ РАЗМЕРОВ - ИЗМЕНЕНИЯ ЗДЕСЬ!
+
     const MAX_TRAIL_LENGTH = 28;
-    const IMAGE_SIZE_MIN = 120;    // был 28 -> теперь 70 (больше)
-    const IMAGE_SIZE_MAX = 200;    // был 52 -> теперь 120 (больше)
+    const IMAGE_SIZE_MIN = 120;    
+    const IMAGE_SIZE_MAX = 200;    
     const SPAWN_DELAY_MS = 60;
     const RANDOM_OFFSET_PX = 8;
     
@@ -179,10 +188,10 @@
         trailEnabled = !trailEnabled;
         const toggleBtn = document.getElementById('toggleTrailBtn');
         if (trailEnabled) {
-            toggleBtn.innerHTML = '✨ Вкл';
+            toggleBtn.innerHTML = 'Вкл';
             toggleBtn.style.background = 'rgba(0,200,200,0.5)';
         } else {
-            toggleBtn.innerHTML = '❌ Выкл';
+            toggleBtn.innerHTML = 'Выкл';
             toggleBtn.style.background = 'rgba(100,100,100,0.5)';
             clearAllTrails();
         }
@@ -193,7 +202,7 @@
             const img = new Image();
             img.src = src;
         });
-        console.log('✅ Изображения предзагружены');
+        console.log('Изображения предзагружены');
     }
     
     function init() {
@@ -209,10 +218,10 @@
         if (toggleBtn) toggleBtn.addEventListener('click', toggleTrail);
         if (clearBtn) clearBtn.addEventListener('click', clearAllTrails);
         
-        toggleBtn.innerHTML = '✨ Вкл';
+        toggleBtn.innerHTML = ' Вкл';
         toggleBtn.style.background = 'rgba(0,200,200,0.5)';
         
-        console.log('🚀 Эффект мышиного следа активирован! Размеры: от ' + IMAGE_SIZE_MIN + 'px до ' + IMAGE_SIZE_MAX + 'px');
+        console.log('Эффект мышиного следа активирован! Размеры: от ' + IMAGE_SIZE_MIN + 'px до ' + IMAGE_SIZE_MAX + 'px');
     }
     
     if (document.readyState === 'loading') {
@@ -222,6 +231,46 @@
     }
 </script>
 
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+const burger = document.getElementById('burgerBtn');
+const menu = document.querySelector('.list-container');
+const body = document.body;
+        
+      
+if (burger && menu) {
+
+burger.addEventListener('click', function(e) {
+e.stopPropagation();
+menu.classList.toggle('active');
+burger.classList.toggle('active');
+body.classList.toggle('menu-open');
+});
+            
+
+const menuLinks = document.querySelectorAll('.li-list a');
+menuLinks.forEach(link => {
+link.addEventListener('click', function() {
+menu.classList.remove('active');
+burger.classList.remove('active');
+body.classList.remove('menu-open');
+});
+});
+            
+document.addEventListener('click', function(event) {
+const isClickInsideMenu = menu.contains(event.target);
+const isClickOnBurger = burger.contains(event.target);
+                
+if (!isClickInsideMenu && !isClickOnBurger && menu.classList.contains('active')) {
+menu.classList.remove('active');
+burger.classList.remove('active');
+body.classList.remove('menu-open');}
+});
+}
+});
+</script>
 
 </body>
 </html>

@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/adaptive.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
 
 
-</style>
+
 
     <section class="menubar">
 <a href="./index.html"><img class="logo" src="./img/log.png" alt="logo"></a>
+
+  <button class="burger" id="burgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
 <div class="list-container">
 
 <ul class="li-list">
@@ -40,15 +48,105 @@
 
 <p class="chch">страница не найдена </p>
 
+<img class="cvetcvet" src="./img/cvet1.svg" alt="cvetcvet">
+<img class="cvetcvet1" src="./img/cvet1.svg" alt="cvetcvet1">
+<img class="cvetcvet2" src="./img/cvet1.svg" alt="cvetcvet2">
+<img class="cvetcvet3" src="./img/cvet1.svg" alt="cvetcvet3">
+<img class="cvetcvet4" src="./img/cvet1.svg" alt="cvetcvet4">
+<img class="cvetcvet5" src="./img/cvet1.svg" alt="cvetcvet5">
+<img class="cvetcvet6" src="./img/cvet1.svg" alt="cvetcvet6">
+<img class="cvetcvet7" src="./img/cvet1.svg" alt="cvetcvet7">
+<img class="cvetcvet8" src="./img/cvet1.svg" alt="cvetcvet8">
+<img class="cvetcvet9" src="./img/cvet1.svg" alt="cvetcvet9">
+<img class="cvetcvet10" src="./img/cvet1.svg" alt="cvetcvet10">
+
 
 <style>
+
+.cvetcvet{
+  width: 15.625vw;
+  position: absolute;
+  margin-left: 7%;
+  margin-top: 7%;
+}
+
+.cvetcvet1{
+  width: 15.625vw;
+  position: absolute;
+  margin-left: 77%;
+  margin-top: 27%;
+}
+
+.cvetcvet2{
+  width: 10.625vw;
+  position: absolute;
+  margin-left: 87%;
+  margin-top: 17%;
+}
+
+.cvetcvet3{
+  width: 10.625vw;
+  position: absolute;
+  margin-left: 67%;
+  margin-top: 13%;
+}
+
+.cvetcvet4{
+  width: 12.625vw;
+  position: absolute;
+  margin-left: 17%;
+  margin-top: 22%;
+}
+
+.cvetcvet5{
+  width: 10.625vw;
+  position: absolute;
+  margin-left: 4%;
+  margin-top: 27%;
+}
+
+.cvetcvet6{
+  width: 12.625vw;
+  position: absolute;
+  margin-left: 27%;
+  margin-top: 4%;
+}
+
+.cvetcvet7{
+  width: 15.625vw;
+  position: absolute;
+  margin-left: 27%;
+  margin-top: 32%;
+}
+
+.cvetcvet8{
+  width: 14.625vw;
+  position: absolute;
+  margin-left: 54%;
+  margin-top: 32%;
+}
+
+.cvetcvet9{
+  width: 9.625vw;
+  position: absolute;
+  margin-left: 54%;
+  margin-top: 5%;
+}
+
+.cvetcvet10{
+  width: 7.625vw;
+  position: absolute;
+  margin-left: 80%;
+  margin-top: 6%;
+}
+
 .ch{
 position: absolute;
 width: 16.04vw;
 font-family: "kommuna normal";
 font-size: 5.35vw;
 margin-left: 45%;
-margin-top: 15%;
+margin-top: 17%;
     
 }
 
@@ -58,7 +156,7 @@ width: 50.04vw;
 font-family: "kommuna normal";
 font-size: 3.35vw;
 margin-left: 32%;
-margin-top: 22%; 
+margin-top: 24%; 
 }
 
 </style>
@@ -77,7 +175,7 @@ margin-top: 22%;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 28%;
+  margin-top: 30%;
   margin-left: 44.5%;
 }
 .button:hover {
@@ -85,6 +183,99 @@ margin-top: 22%;
 }
 </style>
 
+<!-- <img class="cvetcvet" src="./img/cvet.svg" alt="cvetcvet"> -->
+
+<script>
+  function disintegrate(element) {
+    const rect = element.getBoundingClientRect();
+    const parent = element.parentNode;
+    const pieces = 40; // количество кусочков
+
+    for (let i = 0; i < pieces; i++) {
+      const piece = document.createElement('div');
+      piece.style.position = 'absolute';
+      piece.style.width = '8px';
+      piece.style.height = '8px';
+      piece.style.background = `url(${element.src})`;
+      piece.style.backgroundSize = `${element.offsetWidth}px ${element.offsetHeight}px`;
+      piece.style.backgroundPosition = `${Math.random() * -element.offsetWidth}px ${Math.random() * -element.offsetHeight}px`;
+      piece.style.left = `${rect.left + Math.random() * rect.width}px`;
+      piece.style.top = `${rect.top + Math.random() * rect.height}px`;
+      piece.style.opacity = '1';
+      piece.style.zIndex = '1000';
+      document.body.appendChild(piece);
+
+      gsap.to(piece, {
+        duration: 1.2 + Math.random(),
+        x: (Math.random() - 0.5) * 300,
+        y: (Math.random() - 0.5) * 300,
+        rotation: Math.random() * 360,
+        scale: Math.random() * 0.5 + 0.3,
+        opacity: 0,
+        ease: "power2.out",
+        onComplete: () => piece.remove()
+      });
+    }
+
+    gsap.to(element, {
+      duration: 0.3,
+      opacity: 0,
+      scale: 0.8,
+      onComplete: () => element.style.display = 'none'
+    });
+  }
+
+
+  const flowers = document.querySelectorAll('.cvetcvet, .cvetcvet1, .cvetcvet2, .cvetcvet3, .cvetcvet4, .cvetcvet5, .cvetcvet6, .cvetcvet7, .cvetcvet8, .cvetcvet9, .cvetcvet10');
+  flowers.forEach(flower => {
+    flower.addEventListener('mouseenter', () => {
+      if (!flower.classList.contains('disintegrated')) {
+        disintegrate(flower);
+        flower.classList.add('disintegrated');
+      }
+    });
+  });
+</script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+const burger = document.getElementById('burgerBtn');
+const menu = document.querySelector('.list-container');
+const body = document.body;
+        
+      
+if (burger && menu) {
+
+burger.addEventListener('click', function(e) {
+e.stopPropagation();
+menu.classList.toggle('active');
+burger.classList.toggle('active');
+body.classList.toggle('menu-open');
+});
+            
+
+const menuLinks = document.querySelectorAll('.li-list a');
+menuLinks.forEach(link => {
+link.addEventListener('click', function() {
+menu.classList.remove('active');
+burger.classList.remove('active');
+body.classList.remove('menu-open');
+});
+});
+            
+document.addEventListener('click', function(event) {
+const isClickInsideMenu = menu.contains(event.target);
+const isClickOnBurger = burger.contains(event.target);
+                
+if (!isClickInsideMenu && !isClickOnBurger && menu.classList.contains('active')) {
+menu.classList.remove('active');
+burger.classList.remove('active');
+body.classList.remove('menu-open');}
+});
+}
+});
+</script>
 
 </body>
 </html>

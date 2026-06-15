@@ -1,72 +1,36 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-  const images = [
-    "mo1.png",
-    "mo2.png",
-    "mo3.png",
-    "mo4.png",
-    "mo5.png",
-    "mo6.png",
-    "mo7.png",
-    "mo8.png",
-    "mo9.png",
-    "mo10.png"
-  ];
 
-  const container = document.getElementById("container");
-  let currentImageIndex = 0;
-  let lastX = 0;
-  let lastY = 0;
-  let distanceThreshold = 180;
-
-  window.addEventListener("mousemove", (e) => {
-    const dx = e.clientX - lastX;
-    const dy = e.clientY - lastY;
-    const distance = Math.sqrt(dx * dx + dy * dy);
-
-    if (distance > distanceThreshold) {
-      createTrail(e.clientX, e.clientY);
-      lastX = e.clientX;
-      lastY = e.clientY;
+function updateButtonsForMobile() {
+  // Проверяем ширину экрана (мобильные устройства до 768px)
+  const isMobile = window.innerWidth <= 768;
+  
+  // Находим все кнопки с классом nav-button
+  const buttons = document.querySelectorAll('.masterclass-card .nav-button');
+  
+  buttons.forEach(button => {
+    if (isMobile) {
+      // На мобилке ведем на zapis.html
+      button.href = './zapis.html';
+    } else {
+      // На десктопе оставляем原来的 ссылки
+      const parentCard = button.closest('.masterclass-card');
+      if (parentCard.id === 'lin') {
+        button.href = './masterclass-linogravura.html';
+      } else if (parentCard.id === 'shel') {
+        button.href = './masterclass-shelkografiya.html';
+      } else if (parentCard.id === 'dia') {
+        button.href = './masterclass-diatipiya.html';
+      }
     }
   });
+}
 
-  function createTrail(x, y) {
-    const img = document.createElement("img");
-    img.classList.add("image-trail");
-    img.src = images[currentImageIndex];
-    container.appendChild(img);
+// Запускаем при загрузке страницы
+document.addEventListener('DOMContentLoaded', updateButtonsForMobile);
 
-    currentImageIndex = (currentImageIndex + 1) % images.length;
+// Запускаем при изменении размера окна (если пользователь повернул телефон)
+window.addEventListener('resize', updateButtonsForMobile);
 
-    // Начальные параметры
-    gsap.set(img, {
-      x: x - 120, // центрируем относительно курсора (ширина 240/2)
-      y: y - 90,  // центрируем относительно курсора (высота 180/2)
-      scale: 0,
-      opacity: 0,
-      rotation: gsap.utils.random(-20, 20)
-    });
-
-    // Анимация появления
-    gsap.to(img, {
-      scale: 1,
-      opacity: 1,
-      duration: 0.4,
-      ease: "power2.out"
-    });
-
-    // Анимация исчезновения и удаления
-    gsap.to(img, {
-      scale: 0.2,
-      opacity: 0,
-      duration: 1,
-      delay: 0.3,
-      ease: "power2.in",
-      onComplete: () => {
-        img.remove();
-      }
-    });
-  }
 
 });

@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
-
+    <link rel="stylesheet" href="./css/adaptive.css">
+  
 </head>
 <body>
 
-    <section class="menubar">
+<section class="menubar">
 <a href="./index.html"><img class="logo" src="./img/log.png" alt="logo"></a>
+
+  <button class="burger" id="burgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+
 <div class="list-container">
 
 <ul class="li-list">
@@ -34,29 +43,29 @@
 
 <div class="cards-container">
   
-  <div id="lin" class="masterclass-card" style="background-image: url('./img/image3.jpg');">
-    <div class="card-overlay">
-      <h3 class="h3">Линогравюра</h3>
-      <p class="p3">техника печати, в которой изображение вырезается на линолеуме.</p>
+  <div id="lin" class="masterclass-card" style="background-image: url('./img/lin.png');">
+    
+      <h3 class="h33">Линогравюра</h3>
+     
       <a href="./masterclass-linogravura.html" class="nav-button">записаться</a>
     </div>
-  </div>
+  
 
-  <div id="shel" class="masterclass-card" style="background-image: url('./img/image1.jpg');">
-    <div class="card-overlay">
+  <div id="shel" class="masterclass-card" style="background-image: url('./img/shel.png');">
+   
       <h3 class="h3">Шелкография</h3>
-      <p class="p3">это метод печати, который позволяет переносить изображение на различные поверхности.</p>
+
       <a href="./masterclass-shelkografiya.html" class="nav-button">записаться</a>
     </div>
-  </div>
+ 
 
-  <div id="dia" class="masterclass-card" style="background-image: url('./img/image2.jpg');">
-    <div class="card-overlay">
-      <h3 class="h3">Диатипия</h3>
-      <p class="p3">одна из простейших техник печатной графики, которая работает по принципу зеркального отпечатывания.</p>
+  <div id="dia" class="masterclass-card" style="background-image: url('./img/dia.png');">
+   
+      <h3 class="h333">Диатипия</h3>
+
       <a href="./masterclass-diatipiya.html" class="nav-button">записаться</a>
     </div>
-  </div>
+ 
 
   <div>
 <img class="cvet11" src="./img/cvet1.svg" alt="cvet1">
@@ -68,62 +77,71 @@
 
 
 
-
+<!-- <div class="one"></div> -->
 
 <style>
 
-      /* ДОБАВЛЯЕМ ЭТИ СТИЛИ ДЛЯ УБИРАНИЯ СКРОЛЛА */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            overflow-x: hidden; /* Убираем горизонтальный скролл */
-            max-width: 100%;
-            position: relative;
-        }
-        
-body {
-    min-height: 200vh; /* Добавляем высоту для проверки */
-}
 
-  .cvet11{
+
+.cvet11{
 position: absolute;
 width: 16vw;
 margin-top: -80vw;
-margin-left: 15vw;
-  }
+margin-left: 65vw;
+}
 
-   .cvet22{
+.cvet22{
 position: absolute;
 width: 16vw;
-margin-top: -52vw;
-margin-left: -30vw;
-  }
+margin-top: -50vw;
+margin-left: 20vw;
+}
 
-   .cvet33{
+.cvet33{
 position: absolute;
 width: 16vw;
-margin-top: -26vw;
-margin-left: 15vw;
-  }
+margin-top: -22vw;
+margin-left: 65vw;
+}
 
-  #lin{
-    margin-left: -40%;
-  }
+.cards-container{
+  margin-top: 8%;
+}
 
-    #shel{
-    margin-left: 40%;
-  }
+#lin{
+ margin-left: 8%;
+}
 
-   #dia{
-    margin-left: -40%;
-  }
+#shel{
+margin-left: 50%;
+}
+
+#dia{
+margin-left: 8%;
+}
 
 .h3{
 font-family: "kommuna normal";
+font-size: 2.7vw;
+color: rgb(251, 251, 251);
+margin-top: 20%;
+margin-left: 28%;
+}
+
+.h33{
+font-family: "kommuna normal";
+font-size: 2.7vw;
+color: rgb(251, 251, 251);
+margin-top: 18%;
+margin-left: 28%;
+}
+
+.h333{
+font-family: "kommuna normal";
+font-size: 2.7vw;
+color: rgb(251, 251, 251);
+margin-top: 18%;
+margin-left: 32.5%;
 }
 
 .p3{
@@ -131,58 +149,42 @@ font-family: "kommuna normal";
 }
 
 
-.cards-container {
-  display: flex;
-  flex-direction: column;
-  gap: 80px;
-  align-items: center;
-  margin-top: 6%;
-}
+
 
 .masterclass-card {
-  width: 600px;
-  height: 320px;
+width: 46vw;
+height: 44vh;
   background-size: cover;
   background-position: center;
   position: relative;
   border-radius: 4px;
   overflow: hidden;
   transition: transform 0.3s ease;
+  margin-bottom: 3vw;
 }
+
+
 
 .masterclass-card:hover {
   transform: scale(1.03);
 }
 
-.card-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(255,255,255,0.85);
-  padding: 25px;
-  text-align: center;
-}
 
-.card-overlay h3 {
-  margin: 0 0 10px 0;
-  font-size: 24px;
-}
 
-.card-overlay p {
-  margin: 0 0 20px 0;
-  font-size: 15px;
-  color: #444;
-}
+
+
 
 .nav-button {
   display: inline-block;
   padding: 10px 30px;
-  background: #c0c0c0;
-  color: #333;
+  background: #252525;
+  color: #ffffff;
   text-decoration: none;
   border-radius: 4px;
+  margin-left: 39%;
+  margin-top: 5%;
   transition: all 0.3s ease;
+  transform: scale(1.5);
 }
 
 .nav-button:hover {
@@ -232,6 +234,77 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+<script>
 
+document.addEventListener('DOMContentLoaded', function() {
+const burger = document.getElementById('burgerBtn');
+const menu = document.querySelector('.list-container');
+const body = document.body;
+        
+      
+if (burger && menu) {
+
+burger.addEventListener('click', function(e) {
+e.stopPropagation();
+menu.classList.toggle('active');
+burger.classList.toggle('active');
+body.classList.toggle('menu-open');
+});
+            
+
+const menuLinks = document.querySelectorAll('.li-list a');
+menuLinks.forEach(link => {
+link.addEventListener('click', function() {
+menu.classList.remove('active');
+burger.classList.remove('active');
+body.classList.remove('menu-open');
+});
+});
+            
+document.addEventListener('click', function(event) {
+const isClickInsideMenu = menu.contains(event.target);
+const isClickOnBurger = burger.contains(event.target);
+                
+if (!isClickInsideMenu && !isClickOnBurger && menu.classList.contains('active')) {
+menu.classList.remove('active');
+burger.classList.remove('active');
+body.classList.remove('menu-open');}
+});
+}
+});
+</script>
+
+
+<script>
+function updateButtonsForMobile() {
+
+  const isMobile = window.innerWidth <= 768;
+  
+
+  const buttons = document.querySelectorAll('.masterclass-card .nav-button');
+  
+  buttons.forEach(button => {
+    if (isMobile) {
+
+      button.href = './zapis.html';
+    } else {
+
+      const parentCard = button.closest('.masterclass-card');
+      if (parentCard.id === 'lin') {
+        button.href = './masterclass-linogravura.html';
+      } else if (parentCard.id === 'shel') {
+        button.href = './masterclass-shelkografiya.html';
+      } else if (parentCard.id === 'dia') {
+        button.href = './masterclass-diatipiya.html';
+      }
+    }
+  });
+}
+
+
+document.addEventListener('DOMContentLoaded', updateButtonsForMobile);
+
+window.addEventListener('resize', updateButtonsForMobile);
+</script>
 </body>
 </html>

@@ -5,11 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/adaptive.css">
 </head>
 <body>
 
     <section class="menubar">
 <a href="./index.html"><img class="logo" src="./img/log.png" alt="logo"></a>
+
+  <button class="burger" id="burgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+
 <div class="list-container">
 
 <ul class="li-list">
@@ -67,8 +76,8 @@ position: absolute;
 width: 16.04vw;
 font-family: "kommuna normal";
 font-size: 3.35vw;
-margin-left: 42%;
-margin-top: 5%;
+margin-left: 45%;
+margin-top: 12%;
 }
 
 .diatip{
@@ -83,10 +92,10 @@ position: absolute;
 width: 52.08vw;
 font-family: "kommuna normal";
 font-size: 2.35vw;
-margin-top: 15%;
+margin-top: 17%;
 margin-left: 45%;
 letter-spacing: -1.1%;
-line-height: 150%;
+line-height: 110%;
 }
 
 </style>
@@ -114,6 +123,44 @@ line-height: 150%;
   }
 </style>
 
+<script>
 
+document.addEventListener('DOMContentLoaded', function() {
+const burger = document.getElementById('burgerBtn');
+const menu = document.querySelector('.list-container');
+const body = document.body;
+        
+      
+if (burger && menu) {
+
+burger.addEventListener('click', function(e) {
+e.stopPropagation();
+menu.classList.toggle('active');
+burger.classList.toggle('active');
+body.classList.toggle('menu-open');
+});
+            
+
+const menuLinks = document.querySelectorAll('.li-list a');
+menuLinks.forEach(link => {
+link.addEventListener('click', function() {
+menu.classList.remove('active');
+burger.classList.remove('active');
+body.classList.remove('menu-open');
+});
+});
+            
+document.addEventListener('click', function(event) {
+const isClickInsideMenu = menu.contains(event.target);
+const isClickOnBurger = burger.contains(event.target);
+                
+if (!isClickInsideMenu && !isClickOnBurger && menu.classList.contains('active')) {
+menu.classList.remove('active');
+burger.classList.remove('active');
+body.classList.remove('menu-open');}
+});
+}
+});
+</script>
 </body>
 </html>

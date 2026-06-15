@@ -5,11 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/adaptive.css">
+    
 </head>
 <body>
 
     <section class="menubar">
 <a href="./index.html"><img class="logo" src="./img/log.png" alt="logo"></a>
+
+  <button class="burger" id="burgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+
 <div class="list-container">
 
 <ul class="li-list">
@@ -77,7 +87,7 @@
   const flowers = document.querySelectorAll('.cvet1, .cvet2, .cvet3, .cvet4');
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-    const rotation = scrollY * 0.3; // регулируйте коэффициент для скорости
+    const rotation = scrollY * 0.3; 
 
 });
 </script>
@@ -99,5 +109,45 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
 
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+const burger = document.getElementById('burgerBtn');
+const menu = document.querySelector('.list-container');
+const body = document.body;
+        
+      
+if (burger && menu) {
+
+burger.addEventListener('click', function(e) {
+e.stopPropagation();
+menu.classList.toggle('active');
+burger.classList.toggle('active');
+body.classList.toggle('menu-open');
+});
+            
+
+const menuLinks = document.querySelectorAll('.li-list a');
+menuLinks.forEach(link => {
+link.addEventListener('click', function() {
+menu.classList.remove('active');
+burger.classList.remove('active');
+body.classList.remove('menu-open');
+});
+});
+            
+document.addEventListener('click', function(event) {
+const isClickInsideMenu = menu.contains(event.target);
+const isClickOnBurger = burger.contains(event.target);
+                
+if (!isClickInsideMenu && !isClickOnBurger && menu.classList.contains('active')) {
+menu.classList.remove('active');
+burger.classList.remove('active');
+body.classList.remove('menu-open');}
+});
+}
+});
+</script>
 </body>
 </html>
